@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+	<model name="shell">
+		<static>0</static>
+		<link name='link'>
+			<pose>0 0 0 0 0 0 </pose>
+			<inertial>
+				<mass>0.001</mass>
+				<inertia>
+					<ixx>0.00001</ixx>
+					<ixy>0</ixy>
+					<ixz>0</ixz>
+					<iyy>0.00001</iyy>
+					<iyz>0</iyz>
+					<izz>0.00001</izz>
+				</inertia>
+			</inertial>
+        	<collision name='collision'>
+        		<geometry>
+        			<mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://shell/meshes/sphere.DAE</uri>
+                	</mesh>
+                	<!-- <sphere>
+                		<radius>0.03</radius>
+                	</sphere> -->
+               	</geometry>
+               	<surface>
+               		<friction>
+               			<ode>
+               				<mu>30.0</mu>
+               				<mu2>30.0</mu2>
+               			</ode>
+               		</friction>
+               		<contact>
+               			<ode>
+               				<kp>1000000.0</kp>
+               				<kd>100.0</kd>
+               				<max_vel>1.0</max_vel>
+               				<min_depth>0.002</min_depth>
+               			</ode>
+               		</contact>
+               	</surface>
+        	</collision>
+	        <visual name='visual'>
+	        	<geometry>
+	                <mesh>
+	                	<scale>1 1 1</scale>
+	                    <uri>model://shell/meshes/sphere.DAE</uri>
+	                </mesh>
+	                <!-- <sphere>
+	                	<radius>0.03</radius>
+	                </sphere> -->
+	            </geometry>
+	            <material>
+	            	<script>
+	            		<uri>file://media/materials/scripts/gazebo.material</uri>
+	            		<name>Gazebo/CustomTransparent</name>
+	            	</script>
+	            </material>
+	        </visual>
+	    </link>
+	</model>
+</sdf>

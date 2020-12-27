@@ -1,0 +1,103 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+	<world name="sky">
+
+	    <include>
+	      <uri>model://shell</uri>
+	      <name>shell1</name>
+	      <pose>0 0 0.2 0 0 0</pose>
+	    </include>
+
+	    <!-- <include>
+	    	<uri>model://ball_bearing</uri>
+	    	<pose>0 0 0.5 0 0 0</pose>
+	    </include> -->
+
+		<include>
+	      <uri>model://ground_plane</uri>
+	    </include>
+
+	    <!-- Global light source -->
+	    <include>
+	      <uri>model://sun</uri>
+	    </include>
+
+	    <!-- <model name='camera'>
+			<static>1</static>
+ 			<link name='camera_link'>
+				<pose>-10 0 15 0 -0.2 0</pose>
+				<inertial>
+					<mass>0.1</mass>
+					<inertia>
+						<ixx>1</ixx>
+						<ixy>0</ixy>
+						<ixz>0</ixz>
+						<iyy>1</iyy>
+						<iyz>0</iyz>
+						<izz>1</izz>
+					</inertia>
+				</inertial>
+				<visual name='visual'>
+					<geometry>
+						<box>
+							<size>0.001 0.001 0.001</size>
+						</box>
+					</geometry>
+				</visual>
+				<sensor type='depth' name='camera'>
+					<camera name='overhead_cam'>
+						<horizontal_fov>2.0</horizontal_fov>
+						<image>
+							<width>1280</width>
+							<height>1280</height>
+						</image>
+						<clip>
+							<near>0.1</near>
+							<far>100</far>
+						</clip>
+
+					</camera>
+
+					<plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+			          <baseline>0.2</baseline>
+			          <alwaysOn>true</alwaysOn>
+			          <updateRate>0.0</updateRate>
+			          <cameraName>camera_ir</cameraName>
+			          <imageTopicName>/camera/color/image_raw</imageTopicName>
+			          <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+			          <depthImageTopicName>/camera/depth/image_raw</depthImageTopicName>
+			          <depthImageCameraInfoTopicName>/camera/depth/camera_info</depthImageCameraInfoTopicName>
+			          <pointCloudTopicName>/camera/depth/points</pointCloudTopicName>
+			          <frameName>camera_link</frameName>
+			          <pointCloudCutoff>0.5</pointCloudCutoff>
+			          <pointCloudCutoffMax>100.0</pointCloudCutoffMax>
+			          <distortionK1>0</distortionK1>
+			          <distortionK2>0</distortionK2>
+			          <distortionK3>0</distortionK3>
+			          <distortionT1>0</distortionT1>
+			          <distortionT2>0</distortionT2>
+			          <CxPrime>0</CxPrime>
+			          <Cx>0</Cx>
+			          <Cy>0</Cy>
+			          <focalLength>0</focalLength>
+			          <hackBaseline>0</hackBaseline>
+			        </plugin>
+					<always_on>1</always_on>
+					<update_rate>30</update_rate>
+					<visualize>1</visualize>
+
+				</sensor>
+				
+				<gravity>1</gravity>
+			</link>
+		</model> -->
+
+
+	    <physics name='default_physics' default='0' type='ode'>
+	      <max_step_size>0.001</max_step_size>
+	      <real_time_factor>1</real_time_factor>
+	      <real_time_update_rate>1000</real_time_update_rate>
+	    </physics>
+    
+	</world>
+</sdf>
