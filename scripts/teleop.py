@@ -46,18 +46,23 @@ if __name__ == '__main__':
 			if key=='w':
 				speed_x += 0.4
 				num = 1
+				pub1.publish(num)
 			elif key=='b':
 				speed_x = 0
 				speed_z = 0
+				pub1.publish(num)
 			elif key=='s':
 				speed_x -= 0.4
 				num = 2
+				pub1.publish(num)
 			elif key=='d':
 				speed_z -= 0.4
 				num = 3
+				pub1.publish(num)
 			elif key=='a':
 				speed_z += 0.4
 				num = 4
+				pub1.publish(num)
 			elif (key == '\x03'):
 				break
 			# if speed_x>vmax:
@@ -71,7 +76,7 @@ if __name__ == '__main__':
 			cmd.linear.x = speed_x
 			cmd.angular.z = speed_z
 			pub.publish(cmd)
-			pub1.publish(num)
+			
 	except Exception as e:
 		print(e)
 	termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
