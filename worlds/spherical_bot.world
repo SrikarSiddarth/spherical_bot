@@ -5,13 +5,8 @@
 	    <include>
 	      <uri>model://shell</uri>
 	      <name>shell1</name>
-	      <pose>0 0 0.2 0 0 0</pose>
+	      <pose>0 0 0.1 0 0 0</pose>
 	    </include>
-
-	    <!-- <include>
-	    	<uri>model://ball_bearing</uri>
-	    	<pose>0 0 0.5 0 0 0</pose>
-	    </include> -->
 
 		<include>
 	      <uri>model://ground_plane</uri>

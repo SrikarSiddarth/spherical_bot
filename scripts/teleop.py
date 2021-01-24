@@ -44,7 +44,7 @@ if __name__ == '__main__':
 			speed_z = 0
 			speed_x = 0.0
 			if key=='w':
-				speed_x += 0.4
+				speed_x += 1.8
 				num = 1
 				pub1.publish(num)
 			elif key=='b':
@@ -52,15 +52,15 @@ if __name__ == '__main__':
 				speed_z = 0
 				pub1.publish(num)
 			elif key=='s':
-				speed_x -= 0.4
+				speed_x -= 1.8
 				num = 2
 				pub1.publish(num)
 			elif key=='d':
-				speed_z -= 0.4
+				speed_z -= 1.8
 				num = 3
 				pub1.publish(num)
 			elif key=='a':
-				speed_z += 0.4
+				speed_z += 1.8
 				num = 4
 				pub1.publish(num)
 			elif (key == '\x03'):

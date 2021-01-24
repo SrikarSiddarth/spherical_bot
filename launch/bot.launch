@@ -1,5 +1,5 @@
 <launch>
-	<arg name="paused" default="true"/>
+	<arg name="paused" default="false"/>
 	<arg name="gui" default="true"/>
 	<arg name="verbose" default="false"/>
 	<!-- <arg name="world" default="$(find spherical_bot)/worlds/spherical_bot.world" /> -->
@@ -21,7 +21,7 @@
 	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
   <rosparam file="$(find spherical_bot)/config/pos_control.yaml" command="load"/>
   <node name="controller_spawner" pkg ="controller_manager" type="spawner" ns="/simple_model" args="base_to_second_joint_position_controller 		base_to_first_joint_position_controller  
-	joint_state_controller --shutdown-timeout 3"/>
+	joint_state_controller"/>
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
