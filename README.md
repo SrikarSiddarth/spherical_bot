@@ -1,4 +1,5 @@
-# spherical_bot
+# Spherical Bot
+## The Institution of Engineers, NITK Chapter
 ROS package that simulates a spherical bot
 
 # to start the simulation
