@@ -10,8 +10,11 @@ ROS package that simulates a spherical bot
 roscore
 ```
 ```sh
+roslaunch spherical_bot bot.launch
+```
+```sh
 rosrun spherical_bot teleop.py
 ```
 ```sh
-rorun spherical_bot test.py
+rosrun spherical_bot test.py
 ```
