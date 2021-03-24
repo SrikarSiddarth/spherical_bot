@@ -1,11 +1,11 @@
 <launch>
-	<arg name="paused" default="false"/>
+	<arg name="paused" default="true"/>
 	<arg name="gui" default="true"/>
 	<arg name="verbose" default="false"/>
 	<!-- <arg name="world" default="$(find spherical_bot)/worlds/spherical_bot.world" /> -->
 	<arg name="world" default="$(find spherical_bot)/worlds/spherical_bot.world" />
 	<arg name="debug" default="false"/>
-	<arg name="model" default="$(find spherical_bot)/urdf/hamster_bot_small.urdf"/>
+	<arg name="model" default="$(find spherical_bot)/urdf/hamster_bot.urdf"/>
 
 
 	<!-- include gazebo launcher -->
@@ -18,15 +18,19 @@
 		<arg name="paused" value="$(arg paused)"/>
 	</include>
 
-	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+	<param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
   <rosparam file="$(find spherical_bot)/config/pos_control.yaml" command="load"/>
-  <node name="controller_spawner" pkg ="controller_manager" type="spawner" ns="/simple_model" args="base_to_second_joint_position_controller 		base_to_first_joint_position_controller  
+  <node name="controller_spawner" pkg ="controller_manager" type="spawner" ns="/hamster_bot" args="base_to_second_joint_position_controller 		base_to_first_joint_position_controller  
 	joint_state_controller"/>
 
   <!-- push robot_description to factory and spawn robot in gazebo -->
   <!-- <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-x -1.35 -y 1.35 -z 0.03 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" /> -->
         <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-x 0 -y 0 -z 0.1 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen" />
+        args="-x 0 -y 0 -z 0.1 -urdf -model robot -param robot_description" respawn="false" output="screen" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+   		respawn="false" output="screen">
+    <remap from="/joint_states" to="/hamster_bot/joint_states" />
+  	</node>
 
 </launch>

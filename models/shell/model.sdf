@@ -5,13 +5,13 @@
 		<link name='link'>
 			<pose>0 0 0 0 0 0 </pose>
 			<inertial>
-				<mass>0.001</mass>
+				<mass>0.2</mass>
 				<inertia>
 					<ixx>0.0001</ixx>
-					<ixy>0</ixy>
-					<ixz>0</ixz>
+					<ixy>0.0</ixy>
+					<ixz>0.0</ixz>
 					<iyy>0.0001</iyy>
-					<iyz>0</iyz>
+					<iyz>0.0</iyz>
 					<izz>0.0001</izz>
 				</inertia>
 			</inertial>
@@ -19,6 +19,7 @@
         		<geometry>
         			<mesh>
                     <scale>1 1 1</scale>
+                    <!-- radius of shell is 0.075 -->
                     <uri>model://shell/meshes/sphere.DAE</uri>
                 	</mesh>
                 	<!-- <sphere>
@@ -28,16 +29,18 @@
                	<surface>
                		<friction>
                			<ode>
-               				<mu>100.0</mu>
-               				<mu2>100.0</mu2>
+               				<mu>0.1</mu>
+               				<mu2>0.1</mu2>
                			</ode>
                		</friction>
                		<contact>
                			<ode>
-               				<kp>100000.0</kp>
-               				<kd>10.0</kd>
-               				<max_vel>1</max_vel>
-               				<min_depth>0.0</min_depth>
+               				<kp>100000000000.0</kp>      <!-- kp of the contact force (stiffness) -->
+               				<kd>700.0</kd> 			<!-- kd of the contact force (damping)-->
+               				<!-- <kp>100000.0</kp> 	
+               				<kd>10.0</kd> -->
+               				<max_vel>0</max_vel> 	<!-- max velocity with which two surfaces bounce -->
+               				<min_depth>0.00001</min_depth> 	<!-- min depth which two surfaces penetrate -->
                			</ode>
                		</contact>
                	</surface>
@@ -55,10 +58,13 @@
 	            <material>
 	            	<script>
 	            		<uri>file://media/materials/scripts/gazebo.material</uri>
-	            		<name>Gazebo/CustomTransparent</name>
+	            		<name>Gazebo/CustomRedTransparent</name>
+	            		<!-- <name>Gazebo/CustomTransparent</name> -->
 	            	</script>
 	            </material>
 	        </visual>
+	        <gravity>1</gravity>  
+	        <self_collide>1</self_collide>
 	    </link>
 	</model>
 </sdf>

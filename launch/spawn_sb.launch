@@ -1,0 +1,30 @@
+<?xml version = "1.0" encoding="UTF-8"?>
+<launch>
+	<!-- <env name="GAZEBO_RESOURCE_PATH" value="$(find foxbot)/media/materials"/> -->
+
+	<arg name="model" default="$(find spherical_bot)/urdf/hamster_bot.urdf"/>
+	<!--	Load	the	foxbot	URDF	model	into	the	parameter	server	-->
+	<param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+	
+
+	<!--	Spawn	a	foxbot	in	Gazebo,	taking	the	description	from	the
+							parameter	server	-->
+	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="-x 0 -y 0 -z 0.1 -urdf -model robot -param robot_description" respawn="false" output="screen" />
+
+	<!-- Load joint controller configurations from YAML file to parameter server -->
+	<rosparam file="$(find spherical_bot)/config/pos_control.yaml" command="load"/>
+
+	  <!-- load the controllers -->
+	<node name="controller_spawner" pkg ="controller_manager" type="spawner" ns="/hamster_bot" args="base_to_second_joint_position_controller 		base_to_first_joint_position_controller  
+	joint_state_controller"/>
+
+	  <!-- convert joint states to TF transforms for rviz, etc -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+   		respawn="false" output="screen">
+    <remap from="/joint_states" to="/hamster_bot/joint_states" />
+  	</node>
+
+	
+</launch>

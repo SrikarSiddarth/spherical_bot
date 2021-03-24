@@ -1,13 +1,13 @@
 /*********
-  working verified by siddu
+  working verified
 *********/
 
 // Load Wi-Fi library
 #include <ESP8266WiFi.h>
 
 // Replace with your network credentials
-const char* ssid     = "siddulaptop";
-const char* password = "sidlaptop@123";
+const char* ssid     = "myLaptop";
+const char* password = "myLaptop@123";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -85,7 +85,7 @@ void loop(){
             }
 
             // send sensor info here in the next line in the form of a python dictionary
-//            client.println("{\"name\":\"siddu\",\"age\":20}");
+//            client.println("{\"name\":\"Rajveer\",\"age\":20}");
             
             // The HTTP response ends with another blank line
             client.println();
